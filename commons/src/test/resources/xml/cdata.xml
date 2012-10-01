@@ -1,0 +1,4 @@
+<ns:root xmlns:ns="http://testdata.commons.ib.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <ns:tag>value</ns:tag>
+    <ns:cdatatag><![CDATA[<blabla>&]]></ns:cdatatag>
+</ns:root>

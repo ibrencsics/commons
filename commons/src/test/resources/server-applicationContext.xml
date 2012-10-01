@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:soap="http://cxf.apache.org/bindings/soap"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+         http://cxf.apache.org/jaxws
+         http://cxf.apache.org/schemas/jaxws.xsd
+         http://cxf.apache.org/bindings/soap
+         http://cxf.apache.org/schemas/configuration/soap.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+    <!-- Import statement optional but often required if you're declaring
+         other CXF beans in this io such as CXF's JMX MBeans -->
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+
+    <!--<jaxws:endpoint-->
+        <!--id="appman"-->
+        <!--serviceName="appmanns:AppmanService"-->
+        <!--endpointName="appmanns:AppmanEndPoint"-->
+        <!--wsdlLocation="wsdl/DIAD_SignatureTest_Appman.wsdl"-->
+        <!--implementor="org.ib.commons.ws.SignatureTestAppmanWS"-->
+        <!--address="http://localhost:8080/sigtest/services/appman"-->
+        <!--xmlns:appmanns="http://globalplatform.org/appman">-->
+
+        <!--&lt;!&ndash;jaxws:binding>-->
+           <!--<soap:soapBinding mtomEnabled="true" version="1.2"/>-->
+        <!--</jaxws:binding&ndash;&gt;-->
+
+    <!--</jaxws:endpoint>-->
+
+    <jaxws:endpoint
+        id="appman12"
+        serviceName="appmanns:AppmanService"
+        endpointName="appmanns:AppmanEndPoint"
+        wsdlLocation="wsdl/DIAD_SignatureTest_Appman_12.wsdl"
+        implementor="org.ib.commons.ws.SignatureTestAppmanWS12"
+        address="http://localhost:8080/sigtest/services/appman12"
+        xmlns:appmanns="http://globalplatform.org/appman">
+    </jaxws:endpoint>
+
+    <!--<jaxws:endpoint-->
+        <!--id="appmanSEI"-->
+        <!--serviceName="appmanns:AppmanService"-->
+        <!--endpointName="appmanns:AppmanEndPoint"-->
+        <!--wsdlLocation="wsdl/DIAD_SignatureTest_Appman_12.wsdl"-->
+        <!--implementor="org.ib.commons.ws.SignatureTestAppmanSEI"-->
+        <!--address="http://localhost:8080/sigtest/services/appmanSEI"-->
+        <!--xmlns:appmanns="http://globalplatform.org/appman">-->
+    <!--</jaxws:endpoint>-->
+
+</beans>
