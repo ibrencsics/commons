@@ -247,7 +247,7 @@ public class X509Utils {
         crlGen.setNextUpdate(new Date(now.getTime() + 100000));
         crlGen.setSignatureAlgorithm("SHA256WithRSAEncryption");
 
-        crlGen.addCRLEntry(revokedSerialNumber, now, CRLReason.privilegeWithdrawn);
+//        crlGen.addCRLEntry(revokedSerialNumber, now, CRLReason.privilegeWithdrawn);
 
         crlGen.addExtension(X509Extensions.AuthorityKeyIdentifier,
                 false, new AuthorityKeyIdentifierStructure(caCert));
