@@ -1,0 +1,54 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:dp="urn:import:com.google.gwt.user.datepicker.client"
+             xmlns:container="urn:import:com.sencha.gxt.widget.core.client.container">
+
+    <container:FlowLayoutContainer>
+
+        <g:Label text="X.509 Certificate Parameters"/>
+
+        <!--<g:FlexTable ui:field='params' cellSpacing='0' cellPadding='0'/>-->
+
+        <g:HTMLPanel>
+            <table>
+                <tr>
+                    <td><g:Label text="Alias"/></td>
+                    <td><g:TextBox ui:field="tbAlias"/></td>
+                </tr>
+                <tr>
+                    <td><g:Label text="KeyPass"/></td>
+                    <td><g:TextBox ui:field="tbKeyPass"/></td>
+                </tr>
+                <tr>
+                    <td><g:Label text="Serial Number"/></td>
+                    <td><g:TextBox ui:field="tbSerial"/></td>
+                </tr>
+                <tr>
+                    <td><g:Label text="Issuer DN"/></td>
+                    <td><g:TextBox ui:field="tbIssuerDN"/></td>
+                </tr>
+                <tr>
+                    <td><g:Label text="Not Before"/></td>
+                    <td><dp:DateBox ui:field="dbNotBefore"/></td>
+                </tr>
+                <tr>
+                    <td><g:Label text="Not After"/></td>
+                    <td><dp:DateBox ui:field="dbNotAfter"/></td>
+                </tr>
+                <tr>
+                    <td><g:Label text="Subject DN"/></td>
+                    <td><g:TextBox ui:field="tbSubjectDN"/></td>
+                </tr>
+                <tr>
+                    <td><g:Label text="Signature Algorithm"/></td>
+                    <td><g:ListBox ui:field="lbSignAlg"/></td>
+                </tr>
+            </table>
+        </g:HTMLPanel>
+
+        <g:Button text="Create" ui:field="btnCreate"/>
+
+    </container:FlowLayoutContainer>
+
+</ui:UiBinder>

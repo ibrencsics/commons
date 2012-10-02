@@ -1,0 +1,63 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:gxt="urn:import:com.sencha.gxt.widget.core.client"
+             xmlns:container="urn:import:com.sencha.gxt.widget.core.client.container"
+             xmlns:row="urn:import:com.sencha.gxt.widget.core.client.container"
+             xmlns:ksi="urn:import:org.ib.commons.client.services.keystore2.issuer">
+
+    <ui:style>
+    </ui:style>
+
+    <ui:with type="com.sencha.gxt.core.client.util.Margins" field="outerMargins">
+        <ui:attributes top="4" right="4" bottom="4" left="4"/>
+    </ui:with>
+    <ui:with type="com.sencha.gxt.core.client.util.Margins" field="centerMargins">
+        <ui:attributes top="0" right="4" bottom="0" left="4"/>
+    </ui:with>
+
+    <ui:with type="com.sencha.gxt.widget.core.client.container.VerticalLayoutContainer.VerticalLayoutData" field="topData">
+        <ui:attributes width="350" height="300" margins="{outerMargins}"/>
+    </ui:with>
+    <ui:with type="com.sencha.gxt.widget.core.client.container.VerticalLayoutContainer.VerticalLayoutData" field="middleData">
+        <ui:attributes width="300" height="35" margins="{centerMargins}"/>
+    </ui:with>
+    <ui:with type="com.sencha.gxt.widget.core.client.container.VerticalLayoutContainer.VerticalLayoutData" field="bottomData">
+        <ui:attributes width="300" height="200" margins="{outerMargins}"/>
+    </ui:with>
+
+    <row:VerticalLayoutContainer>
+        <row:child layoutData="{topData}">
+            <gxt:FramedPanel headingText="Issue Certificate" collapsible="true" expanded="false">
+                <container:VerticalLayoutContainer>
+                    <g:HTMLPanel>
+                        <table>
+                            <tr>
+                                <td><g:Label text="PKCS10 Cert Request"/></td>
+                                <td><g:TextBox ui:field="tbCertReq" readOnly="true"/></td>
+                            </tr>
+                            <tr>
+                                <td><g:Label text="Issuer"/></td>
+                                <td><g:TextBox ui:field="tbIssuer" readOnly="true"/></td>
+                            </tr>
+                            <tr>
+                                <td><g:Label text="Target"/></td>
+                                <td><g:TextBox ui:field="tbTarget" readOnly="true"/></td>
+                            </tr>
+                            <tr>
+                                <td><g:Label text="Target alias"/></td>
+                                <td><g:TextBox ui:field="tbTargetAlias"/></td>
+                            </tr>
+                            <tr>
+                                <td><g:Label text="Target key password"/></td>
+                                <td><g:TextBox ui:field="tbTargetKeyPass"/></td>
+                            </tr>
+                        </table>
+                    </g:HTMLPanel>
+                    <g:Button ui:field="btnIssueCert" text="Issue" styleName="button"/>
+                </container:VerticalLayoutContainer>
+            </gxt:FramedPanel>
+        </row:child>
+    </row:VerticalLayoutContainer>
+
+</ui:UiBinder>
