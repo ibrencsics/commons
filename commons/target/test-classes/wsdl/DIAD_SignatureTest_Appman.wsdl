@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 (http://www.altova.com) by mazuki (darksiderg) -->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:diad="http://namespaces.globalplatform.org/systems-profiles/1.1.1"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+                  xmlns:tns="http://globalplatform.org/appman" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:ns1="http://www.w3.org/2000/09/xmldsig#" targetNamespace="http://globalplatform.org/appman">
+	<wsdl:types>
+		<xs:schema>
+			<xs:import namespace="http://namespaces.globalplatform.org/systems-profiles/1.1.1" schemaLocation="../xsd/SignatureTest.xsd"/>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="GetAppProfileRequest">
+		<wsdl:part name="GetAppProfileRequest" element="diad:SignatureTest"/>
+	</wsdl:message>
+	<wsdl:message name="GetAppProfileResponse">
+		<wsdl:part name="GetAppProfileResponse" element="diad:SignatureTest"/>
+	</wsdl:message>
+	<wsdl:portType name="Appman">
+		<wsdl:operation name="GetAppProfile">
+			<wsdl:input message="tns:GetAppProfileRequest"/>
+			<wsdl:output message="tns:GetAppProfileResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="AppmanBinding" type="tns:Appman">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="GetAppProfile">
+			<soap:operation soapAction="GetAppProfile" soapActionRequired="true"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="AppmanService">
+		<wsdl:port name="AppmanEndPoint" binding="tns:AppmanBinding">
+			<soap:address location="http://globalplatform.org/systems-messaging/appman"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

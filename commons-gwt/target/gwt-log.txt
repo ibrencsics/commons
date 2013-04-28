@@ -1,0 +1,136 @@
+DEBUG JspRuntimeContext:104 - Parent class loader is: ContextLoader@null
+DEBUG JspServlet:80 - Scratch dir for the JSP engine is: C:\Users\IBRENC~1\AppData\Local\Temp\Jetty_127_0_0_1_8888_www____-fojw0f\jsp
+DEBUG JspServlet:82 - IMPORTANT: Do not modify the generated servlets
+DEBUG JspServlet:251 - JspServlet.destroy()
+DEBUG JspRuntimeContext:104 - Parent class loader is: ContextLoader@null
+DEBUG JspServlet:80 - Scratch dir for the JSP engine is: C:\Users\IBRENC~1\AppData\Local\Temp\Jetty_127_0_0_1_8888_www____-fojw0f\jsp
+DEBUG JspServlet:82 - IMPORTANT: Do not modify the generated servlets
+DEBUG JspServlet:251 - JspServlet.destroy()
+DEBUG JspRuntimeContext:104 - Parent class loader is: ContextLoader@null
+DEBUG JspServlet:80 - Scratch dir for the JSP engine is: C:\Users\IBRENC~1\AppData\Local\Temp\Jetty_127_0_0_1_8888_www____-fojw0f\jsp
+DEBUG JspServlet:82 - IMPORTANT: Do not modify the generated servlets
+DEBUG AbstractFileConfiguration:588 - FileName set to asdasd.properties
+DEBUG AbstractFileConfiguration:626 - Base path set to C:\Projects\Experiments\wsCommons\temp\keystore
+DEBUG ConfigurationUtils:449 - ConfigurationUtils.locate(): base is C:\Projects\Experiments\wsCommons\temp\keystore, name is asdasd.properties
+DEBUG DefaultFileSystem:267 - Could not locate file asdasd.properties at C:\Projects\Experiments\wsCommons\temp\keystore: unknown protocol: c
+DEBUG ConfigurationUtils:493 - Loading configuration from the path C:\Projects\Experiments\wsCommons\temp\keystore\asdasd.properties
+DEBUG AbstractFileConfiguration:588 - FileName set to cacerts.properties
+DEBUG AbstractFileConfiguration:626 - Base path set to C:\Projects\Experiments\wsCommons\temp\keystore
+DEBUG ConfigurationUtils:449 - ConfigurationUtils.locate(): base is C:\Projects\Experiments\wsCommons\temp\keystore, name is cacerts.properties
+DEBUG DefaultFileSystem:267 - Could not locate file cacerts.properties at C:\Projects\Experiments\wsCommons\temp\keystore: unknown protocol: c
+DEBUG ConfigurationUtils:493 - Loading configuration from the path C:\Projects\Experiments\wsCommons\temp\keystore\cacerts.properties
+DEBUG AbstractFileConfiguration:588 - FileName set to diad-it.jks.properties
+DEBUG AbstractFileConfiguration:626 - Base path set to C:\Projects\Experiments\wsCommons\temp\keystore
+DEBUG ConfigurationUtils:449 - ConfigurationUtils.locate(): base is C:\Projects\Experiments\wsCommons\temp\keystore, name is diad-it.jks.properties
+DEBUG DefaultFileSystem:267 - Could not locate file diad-it.jks.properties at C:\Projects\Experiments\wsCommons\temp\keystore: unknown protocol: c
+DEBUG ConfigurationUtils:493 - Loading configuration from the path C:\Projects\Experiments\wsCommons\temp\keystore\diad-it.jks.properties
+DEBUG AbstractFileConfiguration:588 - FileName set to keystore.jks.properties
+DEBUG AbstractFileConfiguration:626 - Base path set to C:\Projects\Experiments\wsCommons\temp\keystore
+DEBUG ConfigurationUtils:449 - ConfigurationUtils.locate(): base is C:\Projects\Experiments\wsCommons\temp\keystore, name is keystore.jks.properties
+DEBUG DefaultFileSystem:267 - Could not locate file keystore.jks.properties at C:\Projects\Experiments\wsCommons\temp\keystore: unknown protocol: c
+DEBUG ConfigurationUtils:493 - Loading configuration from the path C:\Projects\Experiments\wsCommons\temp\keystore\keystore.jks.properties
+DEBUG AbstractFileConfiguration:588 - FileName set to test.properties
+DEBUG AbstractFileConfiguration:626 - Base path set to C:\Projects\Experiments\wsCommons\temp\keystore
+DEBUG ConfigurationUtils:449 - ConfigurationUtils.locate(): base is C:\Projects\Experiments\wsCommons\temp\keystore, name is test.properties
+DEBUG DefaultFileSystem:267 - Could not locate file test.properties at C:\Projects\Experiments\wsCommons\temp\keystore: unknown protocol: c
+DEBUG ConfigurationUtils:493 - Loading configuration from the path C:\Projects\Experiments\wsCommons\temp\keystore\test.properties
+DEBUG AbstractFileConfiguration:588 - FileName set to test_issuer.jks.properties
+DEBUG AbstractFileConfiguration:626 - Base path set to C:\Projects\Experiments\wsCommons\temp\keystore
+DEBUG ConfigurationUtils:449 - ConfigurationUtils.locate(): base is C:\Projects\Experiments\wsCommons\temp\keystore, name is test_issuer.jks.properties
+DEBUG DefaultFileSystem:267 - Could not locate file test_issuer.jks.properties at C:\Projects\Experiments\wsCommons\temp\keystore: unknown protocol: c
+DEBUG ConfigurationUtils:493 - Loading configuration from the path C:\Projects\Experiments\wsCommons\temp\keystore\test_issuer.jks.properties
+DEBUG AbstractFileConfiguration:588 - FileName set to test_target.jks.properties
+DEBUG AbstractFileConfiguration:626 - Base path set to C:\Projects\Experiments\wsCommons\temp\keystore
+DEBUG ConfigurationUtils:449 - ConfigurationUtils.locate(): base is C:\Projects\Experiments\wsCommons\temp\keystore, name is test_target.jks.properties
+DEBUG DefaultFileSystem:267 - Could not locate file test_target.jks.properties at C:\Projects\Experiments\wsCommons\temp\keystore: unknown protocol: c
+DEBUG ConfigurationUtils:493 - Loading configuration from the path C:\Projects\Experiments\wsCommons\temp\keystore\test_target.jks.properties
+DEBUG AbstractFileConfiguration:588 - FileName set to tomcatKeystore.jks.properties
+DEBUG AbstractFileConfiguration:626 - Base path set to C:\Projects\Experiments\wsCommons\temp\keystore
+DEBUG ConfigurationUtils:449 - ConfigurationUtils.locate(): base is C:\Projects\Experiments\wsCommons\temp\keystore, name is tomcatKeystore.jks.properties
+DEBUG DefaultFileSystem:267 - Could not locate file tomcatKeystore.jks.properties at C:\Projects\Experiments\wsCommons\temp\keystore: unknown protocol: c
+DEBUG ConfigurationUtils:493 - Loading configuration from the path C:\Projects\Experiments\wsCommons\temp\keystore\tomcatKeystore.jks.properties
+DEBUG JspServlet:251 - JspServlet.destroy()
+DEBUG JspRuntimeContext:104 - Parent class loader is: ContextLoader@null
+DEBUG JspServlet:80 - Scratch dir for the JSP engine is: C:\Users\IBRENC~1\AppData\Local\Temp\Jetty_127_0_0_1_8888_www____-fojw0f\jsp
+DEBUG JspServlet:82 - IMPORTANT: Do not modify the generated servlets
+DEBUG AbstractFileConfiguration:588 - FileName set to asdasd.properties
+DEBUG AbstractFileConfiguration:626 - Base path set to C:\Projects\Experiments\wsCommons\temp\keystore
+DEBUG ConfigurationUtils:449 - ConfigurationUtils.locate(): base is C:\Projects\Experiments\wsCommons\temp\keystore, name is asdasd.properties
+DEBUG DefaultFileSystem:267 - Could not locate file asdasd.properties at C:\Projects\Experiments\wsCommons\temp\keystore: unknown protocol: c
+DEBUG ConfigurationUtils:493 - Loading configuration from the path C:\Projects\Experiments\wsCommons\temp\keystore\asdasd.properties
+DEBUG AbstractFileConfiguration:588 - FileName set to cacerts.properties
+DEBUG AbstractFileConfiguration:626 - Base path set to C:\Projects\Experiments\wsCommons\temp\keystore
+DEBUG ConfigurationUtils:449 - ConfigurationUtils.locate(): base is C:\Projects\Experiments\wsCommons\temp\keystore, name is cacerts.properties
+DEBUG DefaultFileSystem:267 - Could not locate file cacerts.properties at C:\Projects\Experiments\wsCommons\temp\keystore: unknown protocol: c
+DEBUG ConfigurationUtils:493 - Loading configuration from the path C:\Projects\Experiments\wsCommons\temp\keystore\cacerts.properties
+DEBUG AbstractFileConfiguration:588 - FileName set to diad-it.jks.properties
+DEBUG AbstractFileConfiguration:626 - Base path set to C:\Projects\Experiments\wsCommons\temp\keystore
+DEBUG ConfigurationUtils:449 - ConfigurationUtils.locate(): base is C:\Projects\Experiments\wsCommons\temp\keystore, name is diad-it.jks.properties
+DEBUG DefaultFileSystem:267 - Could not locate file diad-it.jks.properties at C:\Projects\Experiments\wsCommons\temp\keystore: unknown protocol: c
+DEBUG ConfigurationUtils:493 - Loading configuration from the path C:\Projects\Experiments\wsCommons\temp\keystore\diad-it.jks.properties
+DEBUG AbstractFileConfiguration:588 - FileName set to keystore.jks.properties
+DEBUG AbstractFileConfiguration:626 - Base path set to C:\Projects\Experiments\wsCommons\temp\keystore
+DEBUG ConfigurationUtils:449 - ConfigurationUtils.locate(): base is C:\Projects\Experiments\wsCommons\temp\keystore, name is keystore.jks.properties
+DEBUG DefaultFileSystem:267 - Could not locate file keystore.jks.properties at C:\Projects\Experiments\wsCommons\temp\keystore: unknown protocol: c
+DEBUG ConfigurationUtils:493 - Loading configuration from the path C:\Projects\Experiments\wsCommons\temp\keystore\keystore.jks.properties
+DEBUG AbstractFileConfiguration:588 - FileName set to test.properties
+DEBUG AbstractFileConfiguration:626 - Base path set to C:\Projects\Experiments\wsCommons\temp\keystore
+DEBUG ConfigurationUtils:449 - ConfigurationUtils.locate(): base is C:\Projects\Experiments\wsCommons\temp\keystore, name is test.properties
+DEBUG DefaultFileSystem:267 - Could not locate file test.properties at C:\Projects\Experiments\wsCommons\temp\keystore: unknown protocol: c
+DEBUG ConfigurationUtils:493 - Loading configuration from the path C:\Projects\Experiments\wsCommons\temp\keystore\test.properties
+DEBUG AbstractFileConfiguration:588 - FileName set to test_issuer.jks.properties
+DEBUG AbstractFileConfiguration:626 - Base path set to C:\Projects\Experiments\wsCommons\temp\keystore
+DEBUG ConfigurationUtils:449 - ConfigurationUtils.locate(): base is C:\Projects\Experiments\wsCommons\temp\keystore, name is test_issuer.jks.properties
+DEBUG DefaultFileSystem:267 - Could not locate file test_issuer.jks.properties at C:\Projects\Experiments\wsCommons\temp\keystore: unknown protocol: c
+DEBUG ConfigurationUtils:493 - Loading configuration from the path C:\Projects\Experiments\wsCommons\temp\keystore\test_issuer.jks.properties
+DEBUG AbstractFileConfiguration:588 - FileName set to test_target.jks.properties
+DEBUG AbstractFileConfiguration:626 - Base path set to C:\Projects\Experiments\wsCommons\temp\keystore
+DEBUG ConfigurationUtils:449 - ConfigurationUtils.locate(): base is C:\Projects\Experiments\wsCommons\temp\keystore, name is test_target.jks.properties
+DEBUG DefaultFileSystem:267 - Could not locate file test_target.jks.properties at C:\Projects\Experiments\wsCommons\temp\keystore: unknown protocol: c
+DEBUG ConfigurationUtils:493 - Loading configuration from the path C:\Projects\Experiments\wsCommons\temp\keystore\test_target.jks.properties
+DEBUG AbstractFileConfiguration:588 - FileName set to tomcatKeystore.jks.properties
+DEBUG AbstractFileConfiguration:626 - Base path set to C:\Projects\Experiments\wsCommons\temp\keystore
+DEBUG ConfigurationUtils:449 - ConfigurationUtils.locate(): base is C:\Projects\Experiments\wsCommons\temp\keystore, name is tomcatKeystore.jks.properties
+DEBUG DefaultFileSystem:267 - Could not locate file tomcatKeystore.jks.properties at C:\Projects\Experiments\wsCommons\temp\keystore: unknown protocol: c
+DEBUG ConfigurationUtils:493 - Loading configuration from the path C:\Projects\Experiments\wsCommons\temp\keystore\tomcatKeystore.jks.properties
+DEBUG AbstractFileConfiguration:588 - FileName set to asdasd.properties
+DEBUG AbstractFileConfiguration:626 - Base path set to C:\Projects\Experiments\wsCommons\temp\keystore
+DEBUG ConfigurationUtils:449 - ConfigurationUtils.locate(): base is C:\Projects\Experiments\wsCommons\temp\keystore, name is asdasd.properties
+DEBUG DefaultFileSystem:267 - Could not locate file asdasd.properties at C:\Projects\Experiments\wsCommons\temp\keystore: unknown protocol: c
+DEBUG ConfigurationUtils:493 - Loading configuration from the path C:\Projects\Experiments\wsCommons\temp\keystore\asdasd.properties
+DEBUG AbstractFileConfiguration:588 - FileName set to cacerts.properties
+DEBUG AbstractFileConfiguration:626 - Base path set to C:\Projects\Experiments\wsCommons\temp\keystore
+DEBUG ConfigurationUtils:449 - ConfigurationUtils.locate(): base is C:\Projects\Experiments\wsCommons\temp\keystore, name is cacerts.properties
+DEBUG DefaultFileSystem:267 - Could not locate file cacerts.properties at C:\Projects\Experiments\wsCommons\temp\keystore: unknown protocol: c
+DEBUG ConfigurationUtils:493 - Loading configuration from the path C:\Projects\Experiments\wsCommons\temp\keystore\cacerts.properties
+DEBUG AbstractFileConfiguration:588 - FileName set to diad-it.jks.properties
+DEBUG AbstractFileConfiguration:626 - Base path set to C:\Projects\Experiments\wsCommons\temp\keystore
+DEBUG ConfigurationUtils:449 - ConfigurationUtils.locate(): base is C:\Projects\Experiments\wsCommons\temp\keystore, name is diad-it.jks.properties
+DEBUG DefaultFileSystem:267 - Could not locate file diad-it.jks.properties at C:\Projects\Experiments\wsCommons\temp\keystore: unknown protocol: c
+DEBUG ConfigurationUtils:493 - Loading configuration from the path C:\Projects\Experiments\wsCommons\temp\keystore\diad-it.jks.properties
+DEBUG AbstractFileConfiguration:588 - FileName set to keystore.jks.properties
+DEBUG AbstractFileConfiguration:626 - Base path set to C:\Projects\Experiments\wsCommons\temp\keystore
+DEBUG ConfigurationUtils:449 - ConfigurationUtils.locate(): base is C:\Projects\Experiments\wsCommons\temp\keystore, name is keystore.jks.properties
+DEBUG DefaultFileSystem:267 - Could not locate file keystore.jks.properties at C:\Projects\Experiments\wsCommons\temp\keystore: unknown protocol: c
+DEBUG ConfigurationUtils:493 - Loading configuration from the path C:\Projects\Experiments\wsCommons\temp\keystore\keystore.jks.properties
+DEBUG AbstractFileConfiguration:588 - FileName set to test.properties
+DEBUG AbstractFileConfiguration:626 - Base path set to C:\Projects\Experiments\wsCommons\temp\keystore
+DEBUG ConfigurationUtils:449 - ConfigurationUtils.locate(): base is C:\Projects\Experiments\wsCommons\temp\keystore, name is test.properties
+DEBUG DefaultFileSystem:267 - Could not locate file test.properties at C:\Projects\Experiments\wsCommons\temp\keystore: unknown protocol: c
+DEBUG ConfigurationUtils:493 - Loading configuration from the path C:\Projects\Experiments\wsCommons\temp\keystore\test.properties
+DEBUG AbstractFileConfiguration:588 - FileName set to test_issuer.jks.properties
+DEBUG AbstractFileConfiguration:626 - Base path set to C:\Projects\Experiments\wsCommons\temp\keystore
+DEBUG ConfigurationUtils:449 - ConfigurationUtils.locate(): base is C:\Projects\Experiments\wsCommons\temp\keystore, name is test_issuer.jks.properties
+DEBUG DefaultFileSystem:267 - Could not locate file test_issuer.jks.properties at C:\Projects\Experiments\wsCommons\temp\keystore: unknown protocol: c
+DEBUG ConfigurationUtils:493 - Loading configuration from the path C:\Projects\Experiments\wsCommons\temp\keystore\test_issuer.jks.properties
+DEBUG AbstractFileConfiguration:588 - FileName set to test_target.jks.properties
+DEBUG AbstractFileConfiguration:626 - Base path set to C:\Projects\Experiments\wsCommons\temp\keystore
+DEBUG ConfigurationUtils:449 - ConfigurationUtils.locate(): base is C:\Projects\Experiments\wsCommons\temp\keystore, name is test_target.jks.properties
+DEBUG DefaultFileSystem:267 - Could not locate file test_target.jks.properties at C:\Projects\Experiments\wsCommons\temp\keystore: unknown protocol: c
+DEBUG ConfigurationUtils:493 - Loading configuration from the path C:\Projects\Experiments\wsCommons\temp\keystore\test_target.jks.properties
+DEBUG AbstractFileConfiguration:588 - FileName set to tomcatKeystore.jks.properties
+DEBUG AbstractFileConfiguration:626 - Base path set to C:\Projects\Experiments\wsCommons\temp\keystore
+DEBUG ConfigurationUtils:449 - ConfigurationUtils.locate(): base is C:\Projects\Experiments\wsCommons\temp\keystore, name is tomcatKeystore.jks.properties
+DEBUG DefaultFileSystem:267 - Could not locate file tomcatKeystore.jks.properties at C:\Projects\Experiments\wsCommons\temp\keystore: unknown protocol: c
+DEBUG ConfigurationUtils:493 - Loading configuration from the path C:\Projects\Experiments\wsCommons\temp\keystore\tomcatKeystore.jks.properties
+DEBUG JspServlet:251 - JspServlet.destroy()

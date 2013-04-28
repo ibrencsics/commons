@@ -12,9 +12,6 @@ import com.google.gwt.user.client.ui.RootLayoutPanel;
  */
 public class Main implements EntryPoint {
     public void onModuleLoad() {
-//        RootPanel.get().add(new HelloWidgetWorld("able", "baker", "charlie"));
-
-//        RootLayoutPanel.get().add(new XMLProcessorWindow());
         RootLayoutPanel.get().add(new MainGUI());
     }
 }

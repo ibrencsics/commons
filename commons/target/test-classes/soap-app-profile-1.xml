@@ -1,0 +1,196 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:gp="http://namespaces.globalplatform.org/systems-profiles/1.1.1"
+               xmlns:xd="http://www.w3.org/2000/09/xmldsig#">
+	<soap:Header/>
+	<soap:Body>
+		<gp:SignatureTest>
+			<!-- UniqueID corresponds to OID {globalplatform 100 1 3} -->
+			<gp:ApplicationProfile UniqueID="2A864886FC6B640103" ProfileVersion="1.1.0" ErrataVersion="0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gp="http://namespaces.globalplatform.org/systems-profiles/1.1.1" xsi:schemaLocation="http://namespaces.globalplatform.org/systems-profiles/1.1.1 SignatureTest.xsd">
+				<gp:Description>Sample Security Domain</gp:Description>
+				<gp:Revisions arrayElement="Revision" arrayIndex="#">
+					<gp:Revision ProfileID="2A864886FC6B640103" Date="2002-08-20" Time="10:09:00" By="VISA" Digest="0000" Version="1.0.0"/>
+				</gp:Revisions>
+				<gp:ConflictRules arrayElement="ConflictRule" arrayIndex="#"/>
+				<gp:ApplicationInfo Version="1.0.0" Type="GP" Subtype="CM" Owner="GlobalPlatform" Developer="GlobalPlatform" Provider="GlobalPlatform" Domain="Card Manager" VolatileDataSpaceMax="2000" VolatileDataSpaceMin="2000" NonVolatileDataSpaceMax="2000" NonVolatileDataSpaceMin="2000">
+					<gp:Privileges/>
+					<gp:LifeCycles arrayElement="LifeCycle" arrayIndex="Name">
+						<gp:LifeCycle Name="pre_CardEnablement"/>
+						<gp:LifeCycle Name="pre_Load"/>
+						<gp:LifeCycle Name="post_Load"/>
+						<gp:LifeCycle Name="OP_READY" Value="01"/>
+						<gp:LifeCycle Name="INITIALIZED" Value="07"/>
+						<gp:LifeCycle Name="SECURED" Value="0F"/>
+						<gp:LifeCycle Name="CM_LOCKED" Value="7F"/>
+						<gp:LifeCycle Name="TERMINATED" Value="FF"/>
+					</gp:LifeCycles>
+				</gp:ApplicationInfo>
+				<gp:Key Name="KDCenc" ProfileID="00112233440000000001" External="true"/>
+				<gp:Key Name="KDCkek" ProfileID="00112233440000000002" External="true"/>
+				<gp:Key Name="KDCmac" ProfileID="00112233440000000003" External="true"/>
+				<gp:DataElement Name="deLFAID" External="false" Type="ByteString" Encoding="HEX" Value="A00000000310"/>
+				<gp:DataElement Name="deModAID" External="false" Type="ByteString" Encoding="HEX" Value="A0000000031010"/>
+				<gp:DataElement Name="deAppAID" External="false" Type="ByteString" Encoding="HEX" Value="A0000000031010"/>
+				<gp:DataElement Name="deParam" External="false" Type="ByteString" Encoding="HEX" Value="C9140801010010010200180101002001010028010101"/>
+				<gp:DataElement Name="cardManagerAID" External="false" Type="ByteString" Encoding="HEX" Value="A0000000030000"/>
+				<gp:DataElement Name="loadFileAID" External="false" Type="ByteString" Encoding="HEX" Value="A0000000039011435053"/>
+				<gp:DataElement Name="loadFileDBHash" External="false" Type="ByteString" Encoding="HEX" Value=""/>
+				<gp:DataElement Name="loadParamField" External="false" Type="ByteString" Encoding="HEX" Value=""/>
+				<gp:DataElement Name="loadToken" External="false" Type="ByteString" Encoding="HEX" Value=""/>
+				<gp:DataElement Name="loadMethod" External="false" Type="ByteString" Encoding="ASCII" Value="true"/>
+				<gp:DataElement Name="loadFileName" External="false" Type="ByteString" Encoding="HEX" Value="sample.cap"/>
+				<gp:DataElement Name="moduleAID" External="false" Type="ByteString" Encoding="HEX" Value="A000000003901143505344454D4F"/>
+				<gp:DataElement Name="applicationAID" External="false" Type="ByteString" Encoding="HEX" Value="A000000003901143505344454D4F3031"/>
+				<gp:DataElement Name="installParamField" External="false" Type="ByteString" Encoding="HEX" Value=""/>
+				<gp:DataElement Name="privileges" External="false" Type="ByteString" Encoding="HEX" Value="00"/>
+				<gp:DataElement Name="installToken" External="false" Type="ByteString" Encoding="HEX" Value=""/>
+				<gp:SecureChannel SecureChannel="SCP01">
+					<gp:OpenSecureChannel Param="level">
+						<gp:KeyDeclaration Name="KDCenc" External="true"/>
+						<gp:KeyDeclaration Name="KDCkek" External="true"/>
+						<gp:KeyDeclaration Name="KDCmac" External="true"/>
+						<gp:Script><![CDATA[
+			GPSystem.trace("Entering OpenSecureChannel Script.");
+			
+			// Create a new Secure Channel 01 Protocol object *****************
+			level = arguments[0];
+			GPSystem.trace("Level requested is "+level);
+			sc = this.secureChannel;
+			GPSystem.trace("Attempting Initailize for Update.");
+			GPSystem.trace("	initializeUpdate(0,0);");
+			response = new ByteString(sc.initializeUpdate(0, 0), HEX);
+			GPSystem.trace("Initialize for Update executed with response "+response);
+			if (response == null) {
+				throw new Error("Initialize Update command failed");
+			}
+			// Set the life cycle *********************************************
+			GPSystem.trace("Current secure channel state is "+this.secureChannel.state);
+			switch (this.secureChannel.state) {
+			case SC_CLOSE:
+				GPSystem.trace("Secure Channel state "+level+" corresponds to SC_CLOSE");
+				break;
+			case SC_INITIALIZE:
+				GPSystem.trace("Secure Channel state "+level+" corresponds to SC_INITIALIZE");
+				GPSystem.trace("Attempting to set the encryption key.");
+				GPSystem.trace("	setEncKey("+this.key.KDCenc.getComponent(Key.MODULUS)+");");
+				sc.setEncKey(this.key.KDCenc);
+				GPSystem.trace("Attempting to set the MAC key.");
+				GPSystem.trace("	setMacKey("+this.key.KDCmac.getComponent(Key.MODULUS)+");");
+				sc.setMacKey(this.key.KDCmac);
+				GPSystem.trace("Attempting to set the key exchange key.");
+				GPSystem.trace("	setKekKey("+this.key.KDCkek.getComponent(Key.MODULUS)+");");
+				sc.setKekKey(this.key.KDCkek);
+				break;
+			case SC_OPEN:
+				GPSystem.trace("Secure Channel state "+level+" corresponds to SC_OPEN");
+				break;
+			default:
+				GPSystem.trace("Secure Channel state "+level+" corresponds to an unrecognized state");
+				Throw("Card is in an unrecognized state");
+				break;
+			}
+			// Perform an External Authenticate *******************************
+			GPSystem.trace("Attempting External Authenticate.");
+			GPSystem.trace("	externalAuthenticate("+level+");");
+			sc.externalAuthenticate(level);
+			]]></gp:Script>
+					</gp:OpenSecureChannel>
+				</gp:SecureChannel>
+				<gp:ScriptFragment Name="DELETE" SecureChannel="SCP01" Active="true" StartLifeCycle="pre_DELETE" EndLifeCycle="post_DELETE">
+					<gp:Declaration Name="deAppAID" External="true"/>
+					<gp:Script><![CDATA[
+		// Perform a WARM_RESET ***********************************************
+		this.card.reset(Card.RESET_WARM);
+		// Select the Card Manager ********************************************
+		this.view();
+		// Begin Secure Channel operation *************************************
+		SCLevel = new ByteString(0x01, HEX);
+		this.openSecureChannel(SCLevel);
+		// Delete VSDC Application ********************************************
+		this.deleteAID(this.data.deAppAID);
+		]]></gp:Script>
+				</gp:ScriptFragment>
+				<gp:ScriptFragment Name="LOAD" Active="true" StartLifeCycle="pre_Load" EndLifeCycle="post_Load">
+					<gp:Description>Script for loading an application using the Issuer Security Domain</gp:Description>
+					<gp:Declaration Name="cardManagerAID" External="true"/>
+					<gp:Declaration Name="loadFileAID" External="true"/>
+					<gp:Declaration Name="loadFileDBHash" External="true"/>
+					<gp:Declaration Name="loadParamField" External="true"/>
+					<gp:Declaration Name="loadToken" External="true"/>
+					<gp:Declaration Name="loadMethod" External="true"/>
+					<gp:Script><![CDATA[
+		// Select Card Manager
+		GPSystem.trace("Select Card Manager.");
+		GPSystem.trace("   this.view();");
+		this.view();
+		GPSystem.trace("Card Manager selected.");
+		// Establish Secure Channel with MAC
+		GPSystem.trace("Establish secure channel with MAC.");
+		GPSystem.trace("   this.openSecureChannel(0x01)");
+		scLevel = new ByteString (0x01, HEX);
+		this.openSecureChannel(scLevel);
+		GPSystem.trace("Secure channel opened.");
+		// External parameters other than cardManagerAID which are required and depend on the application specification and issuer choice:
+		//	loadFileAID - the application identifier for the load file (can extract from the Load File Profile)
+		//	loadFileName - name of the load file (can extract from the Load File Profile)
+		//	loadFileStructure - load file structure (can extract from the load file)
+		//	loadFileDBHash - load file data block hash
+		//	loadParamField - any specific load parameters for the load file
+		//	loadToken - load token
+		//	loadMethod - a boolean parameter which specifies whether to load by filename (true) or load using load file structure (false)
+		//		- loadMethod could be specified by the card issuer
+		
+		// Load the load file onto the card
+		// First, execute a install [for load] command
+		GPSystem.trace("Execute an Install for Load command.");
+		GPSystem.trace("	this.installForLoad("+this.data["loadFileAID"]+", "+this.data["cardManagerAID"]+", "+this.data["loadFileDBHash"]+", "+this.data["loadParamField"]+");");
+		this.installForLoad(this.data["loadFileAID"], this.data["cardManagerAID"], this.data["loadFileDBHash"], this.data["loadParamField"], this.data["loadToken"]);
+		GPSystem.trace("installForLoad executed successfully.");
+		// Second, execute a set of load commands
+		// The load() method implicitly sends the correct number of LOAD commands in either case
+		GPSystem.trace("Load using filename is specified as "+this.data.loadMethod+" (where 74727565 = true)");
+		
+		if (this.data.loadMethod == 74727565) {
+			// Load the load file using the filename of the load file
+			GPSystem.trace("Attempt to load using the filename "+this.data["loadFileName"]);
+			GPSystem.trace("	this.loadByName("+this.data["loadFileName"].toString()+");");
+			this.loadByName(this.data["loadFileName"]);
+			GPSystem.trace("Load is successful.");
+			}
+			else {
+				// Load using the Load File structure specified in the Card Specification
+				GPSystem.trace("Attempt to load using the load file structure "+this.data["loadFileStructure"]);
+				GPSystem.trace("	this.load(this.data["+this.data["loadFileName"]+"]);");
+				this.load(this.data["loadFileStructure"]);
+				GPSystem.trace("Load is successful.");
+				}
+		]]></gp:Script>
+				</gp:ScriptFragment>
+				<gp:ScriptFragment Name="INSTALL" Active="true" StartLifeCycle="post_Load" EndLifeCycle="post_INSTALL">
+					<gp:Description>Script for installing an application and making its lifecycle SELECTABLE using the Issuer Security Domain</gp:Description>
+					<gp:Declaration Name="loadFileAID" External="true"/>
+					<gp:Declaration Name="moduleAID" External="true"/>
+					<gp:Declaration Name="applicationAID" External="true"/>
+					<gp:Declaration Name="privileges" External="true"/>
+					<gp:Declaration Name="installParamField" External="true"/>
+					<gp:Declaration Name="installToken" External="true"/>
+					<gp:Script><![CDATA[
+		// Select Card Manager
+		this.view();
+		// Establish Secure Channel with MAC
+		scLevel = new ByteString (0x01, HEX);
+		this.openSecureChannel(scLevel);
+		// External parameters which are required and depend on the application specification and issuer choice:
+		//	loadFileAID - the application identifier for the load file (can extract from Load File Profile)
+		//	moduleAID - application identifier of the desired application module in the load file (can extract from Load File Profile)
+		//	applicationAID - application identifier to assign to the newly created application instance (specified by card issuer)
+		//	privileges - privileges for the new application instance (can extract from Application Profile for application)
+		//	installParamField - application specific installation parameters (valid options should be documented by application developer in specification)
+		//	installToken - install token
+		
+		// Install and make selectable the application
+		this.installForInstallAndSelectable(this.data["loadFileAID"], this.data["moduleAID"], this.data["applicationAID"], this.data["privileges"], this.data["installParamField"], this.data["installToken"]);
+		]]></gp:Script>
+				</gp:ScriptFragment>
+			</gp:ApplicationProfile>
+		</gp:SignatureTest>
+	</soap:Body>
+</soap:Envelope>

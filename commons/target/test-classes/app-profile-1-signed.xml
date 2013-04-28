@@ -1,0 +1,241 @@
+<gp:ApplicationProfile ErrataVersion="0" ProfileVersion="1.1.0" UniqueID="2A864886FC6B640103" xmlns:gp="http://namespaces.globalplatform.org/systems-profiles/1.1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <gp:Description>Sample Security Domain</gp:Description>
+    <gp:Revisions arrayElement="Revision" arrayIndex="#">
+        <gp:Revision By="VISA" Date="2002-08-20" Digest="0000" ProfileID="2A864886FC6B640103" Time="10:09:00" Version="1.0.0"/>
+    </gp:Revisions>
+    <gp:ConflictRules arrayElement="ConflictRule" arrayIndex="#"/>
+    <gp:ApplicationInfo Developer="GlobalPlatform" Domain="Card Manager" NonVolatileDataSpaceMax="2000" NonVolatileDataSpaceMin="2000" Owner="GlobalPlatform" Provider="GlobalPlatform" Subtype="CM" Type="GP" Version="1.0.0" VolatileDataSpaceMax="2000" VolatileDataSpaceMin="2000">
+        <gp:Privileges/>
+        <gp:LifeCycles arrayElement="LifeCycle" arrayIndex="Name">
+            <gp:LifeCycle Name="pre_CardEnablement"/>
+            <gp:LifeCycle Name="pre_Load"/>
+            <gp:LifeCycle Name="post_Load"/>
+            <gp:LifeCycle Name="OP_READY" Value="01"/>
+            <gp:LifeCycle Name="INITIALIZED" Value="07"/>
+            <gp:LifeCycle Name="SECURED" Value="0F"/>
+            <gp:LifeCycle Name="CM_LOCKED" Value="7F"/>
+            <gp:LifeCycle Name="TERMINATED" Value="FF"/>
+        </gp:LifeCycles>
+    </gp:ApplicationInfo>
+    <gp:Key External="true" Name="KDCenc" ProfileID="00112233440000000001"/>
+    <gp:Key External="true" Name="KDCkek" ProfileID="00112233440000000002"/>
+    <gp:Key External="true" Name="KDCmac" ProfileID="00112233440000000003"/>
+    <gp:DataElement Encoding="HEX" External="false" Name="deLFAID" Type="ByteString" Value="A00000000310"/>
+    <gp:DataElement Encoding="HEX" External="false" Name="deModAID" Type="ByteString" Value="A0000000031010"/>
+    <gp:DataElement Encoding="HEX" External="false" Name="deAppAID" Type="ByteString" Value="A0000000031010"/>
+    <gp:DataElement Encoding="HEX" External="false" Name="deParam" Type="ByteString" Value="C9140801010010010200180101002001010028010101"/>
+    <gp:DataElement Encoding="HEX" External="false" Name="cardManagerAID" Type="ByteString" Value="A0000000030000"/>
+    <gp:DataElement Encoding="HEX" External="false" Name="loadFileAID" Type="ByteString" Value="A0000000039011435053"/>
+    <gp:DataElement Encoding="HEX" External="false" Name="loadFileDBHash" Type="ByteString" Value=""/>
+    <gp:DataElement Encoding="HEX" External="false" Name="loadParamField" Type="ByteString" Value=""/>
+    <gp:DataElement Encoding="HEX" External="false" Name="loadToken" Type="ByteString" Value=""/>
+    <gp:DataElement Encoding="ASCII" External="false" Name="loadMethod" Type="ByteString" Value="true"/>
+    <gp:DataElement Encoding="HEX" External="false" Name="loadFileName" Type="ByteString" Value="sample.cap"/>
+    <gp:DataElement Encoding="HEX" External="false" Name="moduleAID" Type="ByteString" Value="A000000003901143505344454D4F"/>
+    <gp:DataElement Encoding="HEX" External="false" Name="applicationAID" Type="ByteString" Value="A000000003901143505344454D4F3031"/>
+    <gp:DataElement Encoding="HEX" External="false" Name="installParamField" Type="ByteString" Value=""/>
+    <gp:DataElement Encoding="HEX" External="false" Name="privileges" Type="ByteString" Value="00"/>
+    <gp:DataElement Encoding="HEX" External="false" Name="installToken" Type="ByteString" Value=""/>
+    <gp:SecureChannel SecureChannel="SCP01">
+        <gp:OpenSecureChannel Param="level">
+            <gp:KeyDeclaration External="true" Name="KDCenc"/>
+            <gp:KeyDeclaration External="true" Name="KDCkek"/>
+            <gp:KeyDeclaration External="true" Name="KDCmac"/>
+            <gp:Script><![CDATA[
+GPSystem.trace("Entering OpenSecureChannel Script.");
+
+// Create a new Secure Channel 01 Protocol object *****************
+level = arguments[0];
+GPSystem.trace("Level requested is "+level);
+sc = this.secureChannel;
+GPSystem.trace("Attempting Initailize for Update.");
+GPSystem.trace("	initializeUpdate(0,0);");
+response = new ByteString(sc.initializeUpdate(0, 0), HEX);
+GPSystem.trace("Initialize for Update executed with response "+response);
+if (response == null) {
+    throw new Error("Initialize Update command failed");
+}
+// Set the life cycle *********************************************
+GPSystem.trace("Current secure channel state is "+this.secureChannel.state);
+switch (this.secureChannel.state) {
+case SC_CLOSE:
+    GPSystem.trace("Secure Channel state "+level+" corresponds to SC_CLOSE");
+    break;
+case SC_INITIALIZE:
+    GPSystem.trace("Secure Channel state "+level+" corresponds to SC_INITIALIZE");
+    GPSystem.trace("Attempting to set the encryption key.");
+    GPSystem.trace("	setEncKey("+this.key.KDCenc.getComponent(Key.MODULUS)+");");
+    sc.setEncKey(this.key.KDCenc);
+    GPSystem.trace("Attempting to set the MAC key.");
+    GPSystem.trace("	setMacKey("+this.key.KDCmac.getComponent(Key.MODULUS)+");");
+    sc.setMacKey(this.key.KDCmac);
+    GPSystem.trace("Attempting to set the key exchange key.");
+    GPSystem.trace("	setKekKey("+this.key.KDCkek.getComponent(Key.MODULUS)+");");
+    sc.setKekKey(this.key.KDCkek);
+    break;
+case SC_OPEN:
+    GPSystem.trace("Secure Channel state "+level+" corresponds to SC_OPEN");
+    break;
+default:
+    GPSystem.trace("Secure Channel state "+level+" corresponds to an unrecognized state");
+    Throw("Card is in an unrecognized state");
+    break;
+}
+// Perform an External Authenticate *******************************
+GPSystem.trace("Attempting External Authenticate.");
+GPSystem.trace("	externalAuthenticate("+level+");");
+sc.externalAuthenticate(level);
+]]></gp:Script>
+        </gp:OpenSecureChannel>
+    </gp:SecureChannel>
+    <gp:ScriptFragment Active="true" EndLifeCycle="post_DELETE" Name="DELETE" SecureChannel="SCP01" StartLifeCycle="pre_DELETE">
+        <gp:Declaration External="true" Name="deAppAID"/>
+        <gp:Script><![CDATA[
+// Perform a WARM_RESET ***********************************************
+this.card.reset(Card.RESET_WARM);
+// Select the Card Manager ********************************************
+this.view();
+// Begin Secure Channel operation *************************************
+SCLevel = new ByteString(0x01, HEX);
+this.openSecureChannel(SCLevel);
+// Delete VSDC Application ********************************************
+this.deleteAID(this.data.deAppAID);
+]]></gp:Script>
+    </gp:ScriptFragment>
+    <gp:ScriptFragment Active="true" EndLifeCycle="post_Load" Name="LOAD" StartLifeCycle="pre_Load">
+        <gp:Description>Script for loading an application using the Issuer Security Domain</gp:Description>
+        <gp:Declaration External="true" Name="cardManagerAID"/>
+        <gp:Declaration External="true" Name="loadFileAID"/>
+        <gp:Declaration External="true" Name="loadFileDBHash"/>
+        <gp:Declaration External="true" Name="loadParamField"/>
+        <gp:Declaration External="true" Name="loadToken"/>
+        <gp:Declaration External="true" Name="loadMethod"/>
+        <gp:Script><![CDATA[
+// Select Card Manager
+GPSystem.trace("Select Card Manager.");
+GPSystem.trace("   this.view();");
+this.view();
+GPSystem.trace("Card Manager selected.");
+// Establish Secure Channel with MAC
+GPSystem.trace("Establish secure channel with MAC.");
+GPSystem.trace("   this.openSecureChannel(0x01)");
+scLevel = new ByteString (0x01, HEX);
+this.openSecureChannel(scLevel);
+GPSystem.trace("Secure channel opened.");
+// External parameters other than cardManagerAID which are required and depend on the application specification and issuer choice:
+//	loadFileAID - the application identifier for the load file (can extract from the Load File Profile)
+//	loadFileName - name of the load file (can extract from the Load File Profile)
+//	loadFileStructure - load file structure (can extract from the load file)
+//	loadFileDBHash - load file data block hash
+//	loadParamField - any specific load parameters for the load file
+//	loadToken - load token
+//	loadMethod - a boolean parameter which specifies whether to load by filename (true) or load using load file structure (false)
+//		- loadMethod could be specified by the card issuer
+
+// Load the load file onto the card
+// First, execute a install [for load] command
+GPSystem.trace("Execute an Install for Load command.");
+GPSystem.trace("	this.installForLoad("+this.data["loadFileAID"]+", "+this.data["cardManagerAID"]+", "+this.data["loadFileDBHash"]+", "+this.data["loadParamField"]+");");
+this.installForLoad(this.data["loadFileAID"], this.data["cardManagerAID"], this.data["loadFileDBHash"], this.data["loadParamField"], this.data["loadToken"]);
+GPSystem.trace("installForLoad executed successfully.");
+// Second, execute a set of load commands
+// The load() method implicitly sends the correct number of LOAD commands in either case
+GPSystem.trace("Load using filename is specified as "+this.data.loadMethod+" (where 74727565 = true)");
+
+if (this.data.loadMethod == 74727565) {
+// Load the load file using the filename of the load file
+GPSystem.trace("Attempt to load using the filename "+this.data["loadFileName"]);
+GPSystem.trace("	this.loadByName("+this.data["loadFileName"].toString()+");");
+this.loadByName(this.data["loadFileName"]);
+GPSystem.trace("Load is successful.");
+}
+else {
+    // Load using the Load File structure specified in the Card Specification
+    GPSystem.trace("Attempt to load using the load file structure "+this.data["loadFileStructure"]);
+    GPSystem.trace("	this.load(this.data["+this.data["loadFileName"]+"]);");
+    this.load(this.data["loadFileStructure"]);
+    GPSystem.trace("Load is successful.");
+    }
+]]></gp:Script>
+    </gp:ScriptFragment>
+    <gp:ScriptFragment Active="true" EndLifeCycle="post_INSTALL" Name="INSTALL" StartLifeCycle="post_Load">
+        <gp:Description>Script for installing an application and making its lifecycle SELECTABLE using the Issuer Security Domain</gp:Description>
+        <gp:Declaration External="true" Name="loadFileAID"/>
+        <gp:Declaration External="true" Name="moduleAID"/>
+        <gp:Declaration External="true" Name="applicationAID"/>
+        <gp:Declaration External="true" Name="privileges"/>
+        <gp:Declaration External="true" Name="installParamField"/>
+        <gp:Declaration External="true" Name="installToken"/>
+        <gp:Script><![CDATA[
+// Select Card Manager
+this.view();
+// Establish Secure Channel with MAC
+scLevel = new ByteString (0x01, HEX);
+this.openSecureChannel(scLevel);
+// External parameters which are required and depend on the application specification and issuer choice:
+//	loadFileAID - the application identifier for the load file (can extract from Load File Profile)
+//	moduleAID - application identifier of the desired application module in the load file (can extract from Load File Profile)
+//	applicationAID - application identifier to assign to the newly created application instance (specified by card issuer)
+//	privileges - privileges for the new application instance (can extract from Application Profile for application)
+//	installParamField - application specific installation parameters (valid options should be documented by application developer in specification)
+//	installToken - install token
+
+// Install and make selectable the application
+this.installForInstallAndSelectable(this.data["loadFileAID"], this.data["moduleAID"], this.data["applicationAID"], this.data["privileges"], this.data["installParamField"], this.data["installToken"]);
+]]></gp:Script>
+    </gp:ScriptFragment>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#dsa-sha1"/>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+<ds:Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>Yl2yuweOA5YKpCe1SHPAw2CeC7I=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>A92R8YvuVxCHrRcT2yHADHnxxvAdDAcGTaqv5sUnJ/yQInD1ivQABA==</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIC9jCCArQCBDruqiowCwYHKoZIzjgEAwUAMGExCzAJBgNVBAYTAkRFMR0wGwYDVQQKExRVbml2
+ZXJzaXR5IG9mIFNpZWdlbjEQMA4GA1UECxMHRkIxMk5VRTEhMB8GA1UEAxMYQ2hyaXN0aWFuIEdl
+dWVyLVBvbGxtYW5uMB4XDTAxMDUwMTEyMjA1OFoXDTA2MTAyMjEyMjA1OFowYTELMAkGA1UEBhMC
+REUxHTAbBgNVBAoTFFVuaXZlcnNpdHkgb2YgU2llZ2VuMRAwDgYDVQQLEwdGQjEyTlVFMSEwHwYD
+VQQDExhDaHJpc3RpYW4gR2V1ZXItUG9sbG1hbm4wggG3MIIBLAYHKoZIzjgEATCCAR8CgYEA/X9T
+gR11EilS30qcLuzk5/YRt1I870QAwx4/gLZRJmlFXUAiUftZPY1Y+r/F9bow9subVWzXgTuAHTRv
+8mZgt2uZUKWkn5/oBHsQIsJPu6nX/rfGG/g7V+fGqKYVDwT7g/bTxR7DAjVUE1oWkTL2dfOuK2HX
+Ku/yIgMZndFIAccCFQCXYFCPFSMLzLKSuYKi64QL8Fgc9QKBgQD34aCF1ps93su8q1w2uFe5eZSv
+u/o66oL5V0wLPQeCZ1FZV4661FlP5nEHEIGAtEkWcSPoTCgWE7fPCTKMyKbhPBZ6i1R8jSjgo64e
+K7OmdZFuo38L+iE1YvH7YnoBJDvMpPG+qFGQiaiD3+Fa5Z8GkotmXoB7VSVkAUw7/s9JKgOBhAAC
+gYASWfn+G1k/nWntj9jX7Nk5JKaiLZ9BLR16eJJxqff33THLfdGs98Xmh2oRWZVh9PMV8oTP3hpR
+cRipjZUZVEIqsBlOGTVLCg4H5TJ81JWOiprh+mkhClNqUr8l5Hu7FBSvQB6inryeva7j0aKNiIvK
+8vfHTiUZpnyNRhkveBlM0jALBgcqhkjOOAQDBQADLwAwLAIUPDd/UmB9GeHqvGjny30Bvjt0AkUC
+FA9ab72kKuB5geYGeckbBrcgPnZk
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:DSAKeyValue>
+<ds:P>
+/X9TgR11EilS30qcLuzk5/YRt1I870QAwx4/gLZRJmlFXUAiUftZPY1Y+r/F9bow9subVWzXgTuA
+HTRv8mZgt2uZUKWkn5/oBHsQIsJPu6nX/rfGG/g7V+fGqKYVDwT7g/bTxR7DAjVUE1oWkTL2dfOu
+K2HXKu/yIgMZndFIAcc=
+</ds:P>
+<ds:Q>l2BQjxUjC8yykrmCouuEC/BYHPU=</ds:Q>
+<ds:G>
+9+GghdabPd7LvKtcNrhXuXmUr7v6OuqC+VdMCz0HgmdRWVeOutRZT+ZxBxCBgLRJFnEj6EwoFhO3
+zwkyjMim4TwWeotUfI0o4KOuHiuzpnWRbqN/C/ohNWLx+2J6ASQ7zKTxvqhRkImog9/hWuWfBpKL
+Zl6Ae1UlZAFMO/7PSSo=
+</ds:G>
+<ds:Y>
+Eln5/htZP51p7Y/Y1+zZOSSmoi2fQS0deniScan3990xy33RrPfF5odqEVmVYfTzFfKEz94aUXEY
+qY2VGVRCKrAZThk1SwoOB+UyfNSVjoqa4fppIQpTalK/JeR7uxQUr0Aeop68nr2u49GijYiLyvL3
+x04lGaZ8jUYZL3gZTNI=
+</ds:Y>
+</ds:DSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></gp:ApplicationProfile>

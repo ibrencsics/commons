@@ -6,7 +6,9 @@
              xmlns:container="urn:import:com.sencha.gxt.widget.core.client.container"
              xmlns:ks="urn:import:org.ib.commons.client.services.keystore"
              xmlns:ks2="urn:import:org.ib.commons.client.services.keystore2"
-             xmlns:xmlsig="urn:import:org.ib.commons.client.services.xmlsig">
+             xmlns:xmlsig="urn:import:org.ib.commons.client.services.xmlsig"
+             xmlns:mvp="urn:import:org.ib.commons.client.services.mvp"
+        >
 
     <ui:with type="com.sencha.gxt.widget.core.client.TabItemConfig" field="shortTextTabConfig">
         <ui:attributes text="X.509"/>

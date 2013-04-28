@@ -1,0 +1,2 @@
+serviceClass: org.ib.commons.client.backend.BackendService
+path: E22781ED6DAA69EF747D14EDCD5C9BA8.gwt.rpc
